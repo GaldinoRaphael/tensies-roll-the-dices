@@ -1,27 +1,35 @@
 import { useState } from 'react';
 import './App.css';
-import Dice from './Dice';
+import Dice from './Dice'
+import { nanoid } from 'nanoid';
 
 
 
 function App() {
+  const [dices, setDices] = useState(() => allNewDices());
+
   function allNewDices(){
-    const numbers = [];
+    const dices = [];
+
     for(let i = 0; i < 10;i++){
-      numbers.push(Math.ceil(Math.random() * 6))
+      dices.push({value: Math.ceil(Math.random() * 6), isHeld: false, id: nanoid()})
     }
   
-    return numbers;
+    return dices;
   }
 
   function rollDices(){
     setDices(() => allNewDices())
   }
 
-  const [dices, setDices] = useState(() => allNewDices());
+  function heldDice(event, id){
+    event.stopPropagation();
+    console.log(dices)
+    setDices(oldDices => oldDices.map(dice => dice.id === id ? {...dice, isHeld: true} : dice));
+  }
   
-  
- const diceElements =   dices.map(number => <Dice number={number} />)
+  const diceElements =   dices.map(dice => <Dice number={dice.value} isHeld={dice.isHeld} key={dice.id} 
+                                    id={dice.id} hold={heldDice} />)
 
   return (
     <div className="app">
