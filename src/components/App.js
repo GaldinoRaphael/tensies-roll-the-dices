@@ -32,17 +32,23 @@ function App() {
     return dices;
   }
 
-  function rollDices(){
+  function newGameOrRollDices(){
+    if(tenzies){
+      setTenzies(false);
+      setDices(() => allNewDices());
+      return;
+    }
+
     setDices((oldDices) => oldDices.map(dice => dice.isHeld ? dice : {...dice, value: Math.ceil(Math.random() * 6)}))
   }
 
-  function heldDice(event, id){
+  function toogleHeldDice(event, id){
     event.stopPropagation();
-    setDices(oldDices => oldDices.map(dice => dice.id === id ? {...dice, isHeld: true} : dice));
+    setDices(oldDices => oldDices.map(dice => dice.id === id ? {...dice, isHeld: !dice.isHeld} : dice));
   }
 
   const diceElements =   dices.map(dice => <Dice number={dice.value} isHeld={dice.isHeld} key={dice.id} 
-                                    id={dice.id} hold={heldDice} />)
+                                    id={dice.id} hold={toogleHeldDice} />)
 
   return (
     <div className="app">
@@ -53,7 +59,7 @@ function App() {
         <div className='dices'>
         {diceElements}
         </div>
-        <button className='button' onClick={rollDices}>{tenzies ? "New Game" : "ROLL"}</button>
+        <button className='button' onClick={newGameOrRollDices}>{tenzies ? "New Game" : "ROLL"}</button>
       </main>
     </div>
   );
