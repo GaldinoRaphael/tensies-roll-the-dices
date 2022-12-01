@@ -1,0 +1,43 @@
+main{
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.03em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    padding: 34px;
+}
+
+.title{
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 30px;
+}
+
+.subtitle{
+    margin-bottom: 23px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 16px;
+}
+
+.button{
+    border-radius: 4px;
+    border: none;
+    background-color: #5035FF;
+    width: 92.16px;
+    height: 35.84px;
+    color: #FFFFFF;
+
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16.384px;
+    line-height: 19px;
+}
