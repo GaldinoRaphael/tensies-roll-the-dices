@@ -9,6 +9,8 @@
     border-radius: 4px;
 
     margin-bottom: 26px;
+
+    cursor: pointer;
 }
 
 .dice-number{
